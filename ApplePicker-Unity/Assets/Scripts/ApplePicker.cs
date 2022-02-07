@@ -1,3 +1,9 @@
+/*
+ * Made by: Ava Fritts
+ * 
+ * Created Jan 31 2022
+ * last edited: Feb 7 2022
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,4 +33,17 @@ public class ApplePicker : MonoBehaviour
     {
         
     }
+
+    public void AppleDestroyed()
+    {
+        GameObject[] tAppleArray = GameObject.FindGameObjectsWithTag("Apple");
+        foreach(GameObject tGo in tAppleArray)
+        {
+            Destroy(tGo);
+        }//end foreach
+
+
+        //if(basketList.count = -1){ 
+        //}
+    }//end AppleDestroyed
 }
