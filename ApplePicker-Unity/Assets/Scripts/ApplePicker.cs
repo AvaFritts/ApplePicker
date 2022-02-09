@@ -2,11 +2,12 @@
  * Made by: Ava Fritts
  * 
  * Created Jan 31 2022
- * last edited: Feb 7 2022
+ * last edited: Feb 9 2022
  */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ApplePicker : MonoBehaviour
 {
@@ -15,16 +16,20 @@ public class ApplePicker : MonoBehaviour
     public int numBaskets = 3;
     public float basketBottomY = -14f;
     public float basketSpacingY = 2f;
+    public List<GameObject> basketList;
 
  
     // Start is called before the first frame update
     void Start()
     {
-        for (int i=0; i<numBaskets; i++){
+        basketList = new List<GameObject>();
+        for (int i=0; i<numBaskets; i++)
+        {
             GameObject tBasketGO = Instantiate<GameObject>(basketPrefab);
             Vector3 pos = Vector3.zero;
             pos.y = basketBottomY + (basketSpacingY * i);
             tBasketGO.transform.position = pos;
+            basketList.Add(tBasketGO);
         }
     }
 
@@ -42,8 +47,13 @@ public class ApplePicker : MonoBehaviour
             Destroy(tGo);
         }//end foreach
 
-
-        //if(basketList.count = -1){ 
-        //}
+        int basketIndex = basketList.Count-1;
+        GameObject tBasketGO = basketList[basketIndex]; //reference to Basket Object
+        basketList.RemoveAt(basketIndex);
+        Destroy(tBasketGO);
+        if(basketList.Count == 0)
+        {
+            SceneManager.LoadScene("_Scene-1");
+        }
     }//end AppleDestroyed
 }

@@ -1,8 +1,8 @@
 /*
  * Made by: Ava Fritts
  * 
- * 
- * last edited: jan 31 2022
+ * Created: jan 31 2022
+ * last edited: Feb 9th 2022
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +15,9 @@ public class AppleTree : MonoBehaviour
     public float speed = 1f; //tree speed
     public float leftAndRightEdge = 10f; //distance for tree turning
     public GameObject applePrefab; //prefab for apple instantiation
+    public GameObject rareApplePrefab; //prefab for rare apple instantiation
     public float secondsBetweenAppleDrops = 1f; //just as the name says
+    public float chanceForRareDrop = 0.1f; //as name says
     public float chanceToChangeDirection = 0.1f; //as name says
 
     // Start is called before the first frame update
@@ -25,9 +27,18 @@ public class AppleTree : MonoBehaviour
     }
     void DropApple()
     {
-        GameObject apple = Instantiate<GameObject>(applePrefab);
-        apple.transform.position = transform.position;
-        Invoke("DropApple", secondsBetweenAppleDrops);
+        if (Random.value < chanceForRareDrop)
+        {
+            GameObject apple = Instantiate<GameObject>(rareApplePrefab);
+            apple.transform.position = transform.position;
+            Invoke("DropApple", secondsBetweenAppleDrops);
+        }
+        else
+        {
+            GameObject apple = Instantiate<GameObject>(applePrefab);
+            apple.transform.position = transform.position;
+            Invoke("DropApple", secondsBetweenAppleDrops);
+        }
     }
 
     // Update is called once per frame
