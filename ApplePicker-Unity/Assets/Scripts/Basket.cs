@@ -11,6 +11,7 @@ using UnityEngine.UI; //using UI Libraries
 
 public class Basket : MonoBehaviour
 {
+    //private Apple aplScre;
     [Header("Set Dynamically")]
     public Text scoreGT;
     public GameObject score;
@@ -45,8 +46,10 @@ public class Basket : MonoBehaviour
         GameObject collidedWith = coll.gameObject;
         if (collidedWith.tag == "Apple")
         {
+           //aplScre = GetComponent<Apple>();
             Destroy(collidedWith);
             int score = int.Parse(scoreGT.text); //parse text of ScoreGT into an int
+            //score += aplScre.pointValue;
             score += 100; //add points
             scoreGT.text = score.ToString(); //display
 
