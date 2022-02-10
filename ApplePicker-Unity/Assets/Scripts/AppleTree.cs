@@ -27,18 +27,17 @@ public class AppleTree : MonoBehaviour
     }
     void DropApple()
     {
-        if (Random.value < chanceForRareDrop)
+        if (Random.value < chanceForRareDrop)//Decides which apple to drop
         {
-            GameObject apple = Instantiate<GameObject>(rareApplePrefab);
+            GameObject apple = Instantiate<GameObject>(rareApplePrefab); //Drops the rare apple
             apple.transform.position = transform.position;
-            Invoke("DropApple", secondsBetweenAppleDrops);
         }
         else
         {
-            GameObject apple = Instantiate<GameObject>(applePrefab);
+            GameObject apple = Instantiate<GameObject>(applePrefab); //Drops the normal apple
             apple.transform.position = transform.position;
-            Invoke("DropApple", secondsBetweenAppleDrops);
         }
+        Invoke("DropApple", secondsBetweenAppleDrops);
     }
 
     // Update is called once per frame
