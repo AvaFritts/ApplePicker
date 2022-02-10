@@ -47,12 +47,12 @@ public class Basket : MonoBehaviour
         if (collidedWith.tag == "Apple")
         {
            //aplScre = GetComponent<Apple>();
-            Destroy(collidedWith);
+           
             int score = int.Parse(scoreGT.text); //parse text of ScoreGT into an int
             //score += aplScre.pointValue;
-            score += 100; //add points
+            score += collidedWith.GetComponent<Apple>().pointValue; //add points
             scoreGT.text = score.ToString(); //display
-
+            Destroy(collidedWith);
             if (score > HighScore.score)
             { //track high score
                 HighScore.score = score;
